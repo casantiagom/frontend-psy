@@ -11,6 +11,8 @@ const Page = () => {
   let [loading, setLoading] = useState(true);
   let { currentUser } = useAuth();
 
+  let currentURL = "https://backend-psy.herokuapp.com";
+
   let foundUser;
   let quiz;
   if (persons && currentUser && quizzes) {
@@ -35,19 +37,19 @@ const Page = () => {
   }, []);
 
   let getPersons = async () => {
-    let response = await fetch("http://127.0.0.1:8000/api/persons/");
+    let response = await fetch(`${currentURL}/api/persons/`);
     let data = await response.json();
     setPersons(data);
   };
 
   let getQuizzes = async () => {
-    let response = await fetch("http://127.0.0.1:8000/api/quizzes/");
+    let response = await fetch(`${currentURL}/api/quizzes/`);
     let data = await response.json();
     setQuizzes(data);
   };
 
   let getAnswer = async () => {
-    let response = await fetch("http://127.0.0.1:8000/api/answer/");
+    let response = await fetch(`${currentURL}/api/answer/`);
     let data = await response.json();
     setAnswer(data);
   };
@@ -63,7 +65,7 @@ const Page = () => {
   };
 
   let updateAnswer = async (answer) => {
-    fetch(`http://127.0.0.1:8000/api/answer/${answer.id}/update/`, {
+    fetch(`${currentURL}/api/answer/${answer.id}/update/`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
