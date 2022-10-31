@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect, useContext } from "react";
 import { useAuth } from "../contexts/AuthContext.js";
+import Likert from "react-likert-scale";
 
 const Page = () => {
   let [quizzes, setQuizzes] = useState([]);
@@ -9,20 +10,30 @@ const Page = () => {
   let [answer, setAnswer] = useState([]);
   let [quizNumber, setQuizNumber] = useState();
   let [loading, setLoading] = useState(true);
+  let [localCurrentUser, setLocalCurrentUser] = useState();
   let { currentUser } = useAuth();
 
   let currentURL = "https://backend-psy.herokuapp.com";
 
   let foundUser;
   let quiz;
-  if (persons && currentUser && quizzes) {
-    foundUser = persons.find((user) => user.user_email == currentUser.email);
+
+  useEffect(() => {
+    setLocalCurrentUser(currentUser);
+  }, [currentUser]);
+
+  if (persons && localCurrentUser && quizzes) {
+    foundUser = persons.find(
+      (user) => user.user_email == localCurrentUser.email
+    );
+    // console.log("foundUser", foundUser);
+    //console.log("questions", questions);
   }
 
   useEffect(() => {
-    quiz = quizzes.find((quiz) => quiz.person == foundUser.id);
+    quiz = quizzes.find((quiz) => quiz.person == foundUser?.id);
     setQuizNumber(quiz?.id);
-    console.log(quizNumber);
+    console.log("quizNumber  " + quizNumber);
   }, [foundUser]);
 
   useEffect(() => {
@@ -55,7 +66,7 @@ const Page = () => {
   };
 
   let createAnswer = async (answer) => {
-    fetch(`http://127.0.0.1:8000/api/answer/`, {
+    fetch(`${currentURL}/api/answer/`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -79,7 +90,7 @@ const Page = () => {
   };
 
   let getQuestionLikert = async () => {
-    let response = await fetch("http://127.0.0.1:8000/api/questionlikert/");
+    let response = await fetch(`${currentURL}/api/questionlikert/`);
     let data = await response.json();
     setQuestions(data);
   };
@@ -87,13 +98,13 @@ const Page = () => {
   const getFilteredQuestions = () => {
     if (!loading)
       return questions.filter((q) => {
-        console.log(quizNumber);
+        console.log("filtered" + quizNumber);
         if (q.quiz == quizNumber) {
           return q;
         }
       });
   };
-
+  // console.log(getFilteredQuestions());
   //persons && persons.length && console.log(persons);
 
   return (
@@ -104,7 +115,6 @@ const Page = () => {
           quizzes.length &&
           answer &&
           quizNumber &&
-          answer.length &&
           getFilteredQuestions().map((q) => {
             const likertOptions = {
               question: q.question,
@@ -116,7 +126,7 @@ const Page = () => {
                 { value: 5, text: "Excellent" },
               ],
               onChange: (val) => {
-                //   console.log(val.value);
+                console.log(val.value);
                 //console.log(q);
 
                 answer.find((a) => a.question == q.id) == undefined
@@ -135,7 +145,6 @@ const Page = () => {
                           : { ...el }
                       )
                     );
-                console.log(quizzes);
                 console.log(quizzes);
               },
             };

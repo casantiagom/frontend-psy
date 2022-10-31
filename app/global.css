@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+fieldset {
+  border: thin solid darkGreen;
+  margin-top: 200px;
+  background-color: lightblue;
+}
+
+.likertIndicator {
+  background-color: lightseagreen;
+}
