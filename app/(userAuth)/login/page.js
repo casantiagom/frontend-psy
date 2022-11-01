@@ -37,7 +37,7 @@ const Page = () => {
       history.push("/");
     } catch {
       console.log(error);
-      setError("failed to log in with google");
+      //  setError("failed to log in with google");
     }
     setLoading(false);
   }

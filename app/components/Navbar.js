@@ -17,7 +17,7 @@ export default function Navbar() {
             href="/"
             className="text-white text-sm uppercase hidden lg:inline-block font-semibold"
           >
-            Dashboard
+            Home
           </Link>
           {!currentUser && (
             <Link

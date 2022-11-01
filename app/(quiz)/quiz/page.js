@@ -1,7 +1,8 @@
 "use client";
 import React, { useState, useEffect, useContext } from "react";
-import { useAuth } from "../contexts/AuthContext.js";
+import { useAuth } from "../../contexts/AuthContext.js";
 import Likert from "react-likert-scale";
+import Link from "next/link.js";
 
 const Page = () => {
   let [quizzes, setQuizzes] = useState([]);
@@ -108,8 +109,8 @@ const Page = () => {
   //persons && persons.length && console.log(persons);
 
   return (
-    <>
-      <div className="w-2/4 ml-auto mr-auto">
+    <div className="">
+      <div className="flex flex-col justify-center items-center">
         {questions &&
           questions.length &&
           quizzes.length &&
@@ -149,18 +150,25 @@ const Page = () => {
               },
             };
 
-            return <Likert key={q.id} {...likertOptions} />;
+            return (
+              <Likert
+                className="w-5/6 items-center"
+                key={q.id}
+                {...likertOptions}
+              />
+            );
           })}
         {
-          <button
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-auto mr-auto"
+          <Link
+            className="bg-pink-500 active:bg-pink-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 w-2/5 self-center text-center mt-10 mb-10"
             onClick={handleSubmit}
+            href="/thanks"
           >
-            SUBMIT
-          </button>
+            Enviar
+          </Link>
         }
       </div>
-    </>
+    </div>
   );
 };
 
