@@ -128,7 +128,7 @@ const Page = () => {
               ],
               onChange: (val) => {
                 console.log(val.value);
-                //console.log(q);
+                console.log("user id ", foundUser.id);
 
                 answer.find((a) => a.question == q.id) == undefined
                   ? setAnswer((prevState) => [
@@ -136,17 +136,17 @@ const Page = () => {
                       {
                         answer: val.value,
                         question: q.id,
-                        person: 1,
+                        person: foundUser.id,
                       },
                     ])
                   : setAnswer((prevState) =>
                       prevState.map((el) =>
                         el.question == q.id
-                          ? { ...el, answer: val.value }
+                          ? { ...el, answer: val.value, person: foundUser.id }
                           : { ...el }
                       )
                     );
-                console.log(quizzes);
+                console.log("answer", answer);
               },
             };
 
