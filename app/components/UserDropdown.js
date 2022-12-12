@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { createPopper } from "@popperjs/core";
 import { useAuth } from "../contexts/AuthContext.js";
 import Link from "next/link";
-import { useRouter } from "next/router.js";
+import { useRouter } from "next/navigation";
 
 const UserDropdown = () => {
   const [error, setError] = useState("");
