@@ -1,7 +1,7 @@
 "use client";
 import React, { useRef, useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { useAuth } from "../../contexts/AuthContext.js";
 
 const Page = () => {
@@ -34,7 +34,7 @@ const Page = () => {
       setError("");
       setLoading(true);
       await signInWithGoogle();
-      history.push("/");
+      history.push("/user");
     } catch {
       console.log(error);
       //  setError("failed to log in with google");
