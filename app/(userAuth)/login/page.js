@@ -31,7 +31,7 @@ const Page = () => {
     e.preventDefault();
 
     try {
-      setError("");
+      setError(" ");
       setLoading(true);
       await signInWithGoogle();
       history.push("/user");
