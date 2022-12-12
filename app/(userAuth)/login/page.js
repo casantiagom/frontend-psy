@@ -1,7 +1,7 @@
 "use client";
 import React, { useRef, useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter } from "next/router.js";
 import { useAuth } from "../../contexts/AuthContext.js";
 
 const Page = () => {
