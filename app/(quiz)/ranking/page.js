@@ -170,7 +170,7 @@ const Page = () => {
 
   //survey.onValueChanged.add((survey) => console.log(survey.data));
 
-  return <Survey model={survey} />;
+  if (jsonBody) return <Survey model={survey} />;
 };
 
 export default Page;
