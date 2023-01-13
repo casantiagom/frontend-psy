@@ -115,7 +115,7 @@ const Page = () => {
             : null
         )
       );
-    // console.log(choices);
+    console.log(rankingNames);
   }, [choices]);
 
   const survey = new Model(jsonBody);
