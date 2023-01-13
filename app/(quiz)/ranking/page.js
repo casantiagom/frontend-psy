@@ -164,13 +164,11 @@ const Page = () => {
     }
   });
 
-  survey?.onValueChanging.add((sender) => {
-    console.log(rankingAnswer);
-  });
+  survey?.onValueChanging.add((sender) => {});
 
   //survey.onValueChanged.add((survey) => console.log(survey.data));
 
-  if (jsonBody) return <Survey model={survey} />;
+  if (jsonBody && rankingNames) return <Survey model={survey} />;
 };
 
 export default Page;
