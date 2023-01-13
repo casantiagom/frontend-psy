@@ -92,7 +92,7 @@ const Page = () => {
   };
 
   useEffect(() => {
-    rankingNamesArr > 0 &&
+    rankingNamesArr.length > 0 &&
       rankingNamesArr.forEach((rank) =>
         choices.map((obj) =>
           obj.id == rank
