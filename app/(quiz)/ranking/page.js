@@ -26,6 +26,7 @@ const Page = () => {
   let { currentUser } = useAuth();
   let foundUser;
   let rankingNamesArr;
+  let arrTest = [1, 2];
 
   useEffect(() => {
     getChoices();
