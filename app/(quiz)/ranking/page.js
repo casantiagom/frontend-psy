@@ -21,8 +21,6 @@ const Page = () => {
   const [localCurrentUser, setLocalCurrentUser] = useState();
   const [foundUserId, setFoundUserId] = useState();
   const [rankingAnswer, setRankingAnswer] = useState([]);
-  const [answerToSend, setAnswerToSend] = useState([]);
-  const getAnswerRef = useRef(false);
   let { currentUser } = useAuth();
   let foundUser;
   let rankingNamesArr;
@@ -39,7 +37,7 @@ const Page = () => {
 
   useEffect(() => {
     foundUser = persons.find(
-      (user) => user.user_email == "ca.santiagom@gmail.com" //localCurrentUser?.email
+      (user) => user.user_email == localCurrentUser?.email
     );
     setFoundUserId(foundUser?.id);
     rankingNamesArr = foundUser?.rankingName;
@@ -92,8 +90,8 @@ const Page = () => {
   };
 
   useEffect(() => {
-    rankingNamesArr.length > 0 &&
-      rankingNamesArr.forEach((rank) =>
+    arrTest &&
+      arrTest.forEach((rank) =>
         choices.map((obj) =>
           obj.id == rank
             ? setJsonBody((prevState) => ({
@@ -170,7 +168,7 @@ const Page = () => {
 
   //survey.onValueChanged.add((survey) => console.log(survey.data));
 
-  return choices && jsonBody && <Survey model={survey} />;
+  if (jsonBody) return <Survey model={survey} />;
 };
 
 export default Page;

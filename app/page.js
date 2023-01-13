@@ -1,4 +1,5 @@
 import React from "react";
+import image from "../public/index_back.png";
 
 import NavWrapper from "./components/NavWrapper";
 
@@ -13,13 +14,7 @@ const Page = () => {
             minHeight: "75vh",
           }}
         >
-          <div
-            className="absolute top-0 w-full h-full bg-center bg-cover"
-            style={{
-              backgroundImage:
-                "url('https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80')",
-            }}
-          >
+          <div className="absolute top-0 w-full h-full bg-bg_index bg-center bg-cover">
             <span
               id="blackOverlay"
               className="w-full h-full absolute opacity-75 bg-black"
@@ -313,7 +308,7 @@ const Page = () => {
                 <div className="px-6">
                   <img
                     alt="..."
-                    src={"../../static/images/800x800.jpg"}
+                    src={"../../static/images/.jpg"}
                     className="shadow-lg rounded-full max-w-full mx-auto"
                     style={{ maxWidth: "120px" }}
                   />
