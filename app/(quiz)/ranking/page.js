@@ -25,6 +25,7 @@ const Page = () => {
   const getAnswerRef = useRef(false);
   let { currentUser } = useAuth();
   let foundUser;
+  let rankingNamesArr;
 
   useEffect(() => {
     getChoices();
@@ -40,7 +41,7 @@ const Page = () => {
       (user) => user.user_email == "ca.santiagom@gmail.com" //localCurrentUser?.email
     );
     setFoundUserId(foundUser?.id);
-    let rankingNamesArr = foundUser?.rankingName;
+    rankingNamesArr = foundUser?.rankingName;
     setRankingNames(rankingNamesArr);
     console.log(rankingNamesArr);
   }, [persons]);
