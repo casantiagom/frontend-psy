@@ -90,8 +90,8 @@ const Page = () => {
   };
 
   useEffect(() => {
-    rankingNames &&
-      rankingNames.forEach((rank) =>
+    rankingNamesArr &&
+      rankingNamesArr.forEach((rank) =>
         choices.map((obj) =>
           obj.id == rank
             ? setJsonBody((prevState) => ({
