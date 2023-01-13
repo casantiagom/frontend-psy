@@ -42,6 +42,7 @@ const Page = () => {
     setFoundUserId(foundUser?.id);
     let rankingNamesArr = foundUser?.rankingName;
     setRankingNames(rankingNamesArr);
+    console.log(rankingNamesArr);
   }, [persons]);
 
   // GET FROM API
@@ -74,7 +75,6 @@ const Page = () => {
   };
 
   useEffect(() => {
-    console.log("yes");
     getRankingAnswers();
   }, []);
 
