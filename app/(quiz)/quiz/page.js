@@ -33,7 +33,7 @@ const Page = () => {
 
   useEffect(() => {
     quiz = quizzes.find((quiz) => quiz.person == foundUser?.id);
-    setQuizNumber(quiz?.id);
+    setQuizNumber(foundUser?.quizzes[0]);
     console.log("quizNumber  " + quizNumber);
   }, [foundUser]);
 
@@ -146,7 +146,7 @@ const Page = () => {
                           : { ...el }
                       )
                     );
-                console.log("answer", answer);
+                console.log(answer);
               },
             };
 

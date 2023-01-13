@@ -66,6 +66,14 @@ const Page = () => {
                       >
                         Take Quiz
                       </Link>
+                      <Link
+                        className="bg-pink-500 active:bg-pink-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1"
+                        type="button"
+                        href="/ranking"
+                        style={{ transition: "all .15s ease" }}
+                      >
+                        Take Ranking
+                      </Link>
                     </div>
                   </div>
                   <div className="w-full lg:w-4/12 px-4 lg:order-1"></div>
