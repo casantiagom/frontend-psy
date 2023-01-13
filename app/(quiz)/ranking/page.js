@@ -3,8 +3,10 @@ import React, { useEffect, useRef } from "react";
 import { useState } from "react";
 import { StylesManager, Model } from "survey-core";
 import { Survey } from "survey-react-ui";
+
 import "survey-core/defaultV2.css";
 import "../../global.css";
+
 //import { json } from "./json";
 StylesManager.applyTheme("defaultV2");
 import { useAuth } from "../../contexts/AuthContext";
@@ -42,7 +44,6 @@ const Page = () => {
     setFoundUserId(foundUser?.id);
     rankingNamesArr = foundUser?.rankingName;
     setRankingNames(rankingNamesArr);
-    console.log(rankingNamesArr);
   }, [persons]);
 
   // GET FROM API
@@ -90,11 +91,12 @@ const Page = () => {
   };
 
   useEffect(() => {
-    arrTest &&
-      arrTest.forEach((rank) =>
+    rankingNames?.length > 0 &&
+      rankingNames.forEach((rank) =>
         choices.map((obj) =>
           obj.id == rank
             ? setJsonBody((prevState) => ({
+                firstPageIsStarted: true,
                 pages: [
                   ...prevState.pages,
                   {
@@ -118,9 +120,9 @@ const Page = () => {
     console.log(rankingNames);
   }, [choices]);
 
-  const survey = new Model(jsonBody);
+  let survey = new Model(jsonBody);
 
-  survey.onComplete.add((sender, options) => {
+  survey?.survey?.onComplete.add((sender, options) => {
     let result = sender.data;
     console.log(result);
     for (let item in result) {
@@ -162,13 +164,13 @@ const Page = () => {
     }
   });
 
-  survey.onValueChanging.add((sender) => {
+  survey?.onValueChanging.add((sender) => {
     console.log(rankingAnswer);
   });
 
   //survey.onValueChanged.add((survey) => console.log(survey.data));
 
-  if (jsonBody) return <Survey model={survey} />;
+  return <Survey model={survey} />;
 };
 
 export default Page;
