@@ -198,6 +198,8 @@ const Page = () => {
     }
   });
 
+  if (flag) survey = new Model(jsonBody);
+
   if (flag) {
     return <Survey model={survey} />;
   }
