@@ -17,11 +17,30 @@ const Page = () => {
   //let json = { pages: [] };
   let idForUser = [1, 2, 1];
   const [jsonBody, setJsonBody] = useState({
+    firstPageIsStarted: "true",
     startSurveyText: "Comenzar",
     pageNextText: "Continuar",
     pagePrevText: "Atras",
     completeText: "Terminar",
     completedHtml: "<h2> Gracias por completar la encuesta! </h2>",
+    pages: [
+      {
+        elements: [
+          {
+            type: "panel",
+            elements: [
+              {
+                type: "html",
+                name: "intro",
+                html: "<article class='intro'>    <h1 class='text-bold text-center mt-10'>                     Porfavor, Complete la siguente encuesta.              </h1>    </article>",
+              },
+            ],
+            name: "panel1",
+          },
+        ],
+        name: "page0",
+      },
+    ],
   });
   const [choices, setChoices] = useState([]);
   const [persons, setPersons] = useState([]);
@@ -40,6 +59,7 @@ const Page = () => {
   useEffect(() => {
     getChoices();
     getPersons();
+    getRankingAnswers();
   }, []);
 
   useEffect(() => {
@@ -84,10 +104,6 @@ const Page = () => {
     });
   };
 
-  useEffect(() => {
-    getRankingAnswers();
-  }, []);
-
   let updateRankingAnswer = async (answer) => {
     console.log(answer);
     fetch(`${currentURL}/api/rankinganswer/${answer.id}/update/`, {
@@ -129,6 +145,10 @@ const Page = () => {
   }, [choices]);
 
   let survey = new Model(jsonBody);
+
+  useEffect(() => {
+    survey = new Model(jsonBody);
+  }, [rankingNames]);
 
   useEffect(() => {
     setTimeout(() => {
