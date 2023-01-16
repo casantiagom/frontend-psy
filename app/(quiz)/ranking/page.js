@@ -109,47 +109,46 @@ const Page = () => {
   };
 
   let setJson = () => {
-    rankingNames?.length > 0 &&
-      rankingNames.forEach((rank) =>
-        choices.map((obj) =>
-          obj.id == rank
-            ? setJsonBody((prevState) => ({
-                ...prevState,
-                pages: [
-                  ...prevState.pages,
-                  {
-                    name: `page${rank + 1}`,
-                    elements: [
-                      {
-                        type: "ranking",
-                        name: obj.rankingName,
-                        title:
-                          "Por favor ordena los items desde el mas importante al menos: ",
-                        isRequired: true,
-                        choices: obj.choice,
-                      },
-                    ],
-                  },
-                ],
-              }))
-            : null
-        )
-      );
+    rankingNames?.forEach((rank) =>
+      choices.map((obj) =>
+        obj.id == rank
+          ? setJsonBody((prevState) => ({
+              ...prevState,
+              pages: [
+                ...prevState.pages,
+                {
+                  name: `page${rank + 1}`,
+                  elements: [
+                    {
+                      type: "ranking",
+                      name: obj.rankingName,
+                      title:
+                        "Por favor ordena los items desde el mas importante al menos: ",
+                      isRequired: true,
+                      choices: obj.choice,
+                    },
+                  ],
+                },
+              ],
+            }))
+          : null
+      )
+    );
   };
 
   useEffect(() => {
     setJson();
-    if (jsonBody.pages.length > 1) {
-      setSurvey(new Model(jsonBody));
-      console.log(jsonBody);
-    }
   }, [rankingNames]);
 
   useEffect(() => {
     setTimeout(() => {
-      setFlag(true);
-    }, 1200);
-  }, []);
+      if (jsonBody.pages.length > 1) {
+        setSurvey(new Model(jsonBody));
+        console.log(jsonBody);
+        setFlag(true);
+      }
+    }, 100);
+  }, [jsonBody]);
 
   survey?.survey?.onComplete.add((sender, options) => {
     let result = sender.data;
