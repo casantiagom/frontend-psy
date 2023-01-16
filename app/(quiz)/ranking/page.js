@@ -17,30 +17,11 @@ const Page = () => {
   //let json = { pages: [] };
   let idForUser = [1, 2, 1];
   const [jsonBody, setJsonBody] = useState({
-    firstPageIsStarted: "true",
     startSurveyText: "Comenzar",
     pageNextText: "Continuar",
     pagePrevText: "Atras",
     completeText: "Terminar",
     completedHtml: "<h2> Gracias por completar la encuesta! </h2>",
-    pages: [
-      {
-        elements: [
-          {
-            type: "panel",
-            elements: [
-              {
-                type: "html",
-                name: "intro",
-                html: "<article class='intro'>    <h1 class='text-bold text-center mt-10'>                     Porfavor, Complete la siguente encuesta.              </h1>    </article>",
-              },
-            ],
-            name: "panel1",
-          },
-        ],
-        name: "page0",
-      },
-    ],
   });
   const [choices, setChoices] = useState([]);
   const [persons, setPersons] = useState([]);
