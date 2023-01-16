@@ -19,10 +19,11 @@ const Page = () => {
   const [jsonBody, setJsonBody] = useState({
     firstPageIsStarted: "true",
     startSurveyText: "Comenzar",
-    completeText: "Terminar",
     pageNextText: "Continuar",
     pagePrevText: "Atras",
-    completedHtml: "<h3>Gracias por completar la encuesta!</h3>",
+    completeText: "Terminar",
+    completedHtml:
+      "<h2 class='text-bold text-center mt-10>Gracias por completar la encuesta!</h2>",
     pages: [
       {
         elements: [
@@ -198,10 +199,7 @@ const Page = () => {
 
   //survey.onValueChanged.add((survey) => console.log(survey.data));
 
-  if (jsonBody && rankingNames) {
-    console.log(jsonBody);
-    return <Survey model={survey} />;
-  }
+  return jsonBody && rankingNames && <Survey model={survey} />;
 };
 
 export default Page;
