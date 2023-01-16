@@ -57,8 +57,7 @@ const Page = () => {
   let { currentUser } = useAuth();
   let foundUser;
   let rankingNamesArr;
-  let arrTest = [1, 2];
-
+  let [flag, setFlag] = useState(false);
   const surveyJson = {
     firstPageIsStarted: true,
   };
@@ -152,7 +151,7 @@ const Page = () => {
             : null
         )
       );
-    console.log(rankingNames);
+    setFlag(true);
   }, [choices]);
 
   let survey = new Model(jsonBody);
@@ -205,7 +204,7 @@ const Page = () => {
 
   //survey.onValueChanged.add((survey) => console.log(survey.data));
 
-  return <Survey model={survey} />;
+  if (flag) return <Survey model={survey} />;
 };
 
 export default Page;
