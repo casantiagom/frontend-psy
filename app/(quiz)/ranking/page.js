@@ -197,9 +197,10 @@ const Page = () => {
     }
   });
 
-  survey?.onValueChanging.add((sender) => {});
-
-  return flag ? <Survey model={survey} /> : <Loading />;
+  if (flag) {
+    return <Survey model={survey} />;
+  }
+  return <Loading />;
 };
 
 export default Page;
