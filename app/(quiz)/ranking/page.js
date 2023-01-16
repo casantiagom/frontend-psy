@@ -3,7 +3,7 @@ import React, { useEffect, useRef } from "react";
 import { useState } from "react";
 import { StylesManager, Model } from "survey-core";
 import { Survey } from "survey-react-ui";
-
+import Loading from "../loading";
 import "survey-core/defaultV2.css";
 import "../../global.css";
 
@@ -16,7 +16,32 @@ const Page = () => {
   let currentURL = "https://backend-psy.herokuapp.com";
   //let json = { pages: [] };
   let idForUser = [1, 2, 1];
-  const [jsonBody, setJsonBody] = useState({ pages: [] });
+  const [jsonBody, setJsonBody] = useState({
+    firstPageIsStarted: "true",
+    startSurveyText: "Comenzar",
+    completeText: "Terminar",
+    pageNextText: "Continuar",
+    pagePrevText: "Atras",
+    completedHtml: "<h3>Gracias por completar la encuesta!</h3>",
+    pages: [
+      {
+        elements: [
+          {
+            type: "panel",
+            elements: [
+              {
+                type: "html",
+                name: "intro",
+                html: "<article class='intro'>    <h1 class='text-bold text-center mt-10'>                     Porfavor, Complete la siguente encuesta.              </h1>    </article>",
+              },
+            ],
+            name: "panel1",
+          },
+        ],
+        name: "page0",
+      },
+    ],
+  });
   const [choices, setChoices] = useState([]);
   const [persons, setPersons] = useState([]);
   const [rankingNames, setRankingNames] = useState([]);
@@ -27,6 +52,10 @@ const Page = () => {
   let foundUser;
   let rankingNamesArr;
   let arrTest = [1, 2];
+
+  const surveyJson = {
+    firstPageIsStarted: true,
+  };
 
   useEffect(() => {
     getChoices();
@@ -96,11 +125,11 @@ const Page = () => {
         choices.map((obj) =>
           obj.id == rank
             ? setJsonBody((prevState) => ({
-                firstPageIsStarted: true,
+                ...prevState,
                 pages: [
                   ...prevState.pages,
                   {
-                    name: `page${rank}`,
+                    name: `page${rank + 1}`,
                     elements: [
                       {
                         type: "ranking",
@@ -120,6 +149,7 @@ const Page = () => {
     console.log(rankingNames);
   }, [choices]);
 
+  let surveyTest = new Model(surveyJson);
   let survey = new Model(jsonBody);
 
   survey?.survey?.onComplete.add((sender, options) => {
@@ -168,7 +198,10 @@ const Page = () => {
 
   //survey.onValueChanged.add((survey) => console.log(survey.data));
 
-  if (jsonBody && rankingNames) return <Survey model={survey} />;
+  if (jsonBody && rankingNames) {
+    console.log(jsonBody);
+    return <Survey model={survey} />;
+  }
 };
 
 export default Page;
