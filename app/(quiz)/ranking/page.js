@@ -6,16 +6,11 @@ import { Survey } from "survey-react-ui";
 import Loading from "../loading";
 import "survey-core/defaultV2.css";
 import "../../global.css";
-
-//import { json } from "./json";
 StylesManager.applyTheme("defaultV2");
 import { useAuth } from "../../contexts/AuthContext";
-import { preventOverflow } from "@popperjs/core";
 
 const Page = () => {
   let currentURL = "https://backend-psy.herokuapp.com";
-  //let json = { pages: [] };
-  let idForUser = [1, 2, 1];
   const [jsonBody, setJsonBody] = useState({
     firstPageIsStarted: "true",
     startSurveyText: "Comenzar",
@@ -48,13 +43,11 @@ const Page = () => {
   const [localCurrentUser, setLocalCurrentUser] = useState();
   const [foundUserId, setFoundUserId] = useState();
   const [rankingAnswer, setRankingAnswer] = useState([]);
+  const [survey, setSurvey] = useState(new Model());
   let { currentUser } = useAuth();
   let foundUser;
   let rankingNamesArr;
   let [flag, setFlag] = useState(false);
-  const surveyJson = {
-    firstPageIsStarted: true,
-  };
 
   useEffect(() => {
     getChoices();
@@ -115,7 +108,7 @@ const Page = () => {
     });
   };
 
-  useEffect(() => {
+  let setJson = () => {
     rankingNames?.length > 0 &&
       rankingNames.forEach((rank) =>
         choices.map((obj) =>
@@ -142,18 +135,20 @@ const Page = () => {
             : null
         )
       );
-  }, [choices]);
-
-  let survey = new Model(jsonBody);
+  };
 
   useEffect(() => {
-    survey = new Model(jsonBody);
+    setJson();
+    if (jsonBody.pages.length > 1) {
+      setSurvey(new Model(jsonBody));
+      console.log(jsonBody);
+    }
   }, [rankingNames]);
 
   useEffect(() => {
     setTimeout(() => {
       setFlag(true);
-    }, 2200);
+    }, 1200);
   }, []);
 
   survey?.survey?.onComplete.add((sender, options) => {
@@ -197,8 +192,6 @@ const Page = () => {
       });
     }
   });
-
-  if (flag) survey = new Model(jsonBody);
 
   if (flag) {
     return <Survey model={survey} />;
