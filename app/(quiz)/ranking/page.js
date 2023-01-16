@@ -22,9 +22,7 @@ const Page = () => {
     pageNextText: "Continuar",
     pagePrevText: "Atras",
     completeText: "Terminar",
-
-    completedHtml:
-      "<h2 class='text-bold text-center mt-10>Gracias por completar la encuesta!</h2>",
+    completedHtml: "<h2> Gracias por completar la encuesta! </h2>",
     pages: [
       {
         elements: [
@@ -41,10 +39,6 @@ const Page = () => {
           },
         ],
         name: "page0",
-      },
-      {
-        name: `page1`,
-        elements: [{}],
       },
     ],
   });
@@ -151,10 +145,15 @@ const Page = () => {
             : null
         )
       );
-    setFlag(true);
   }, [choices]);
 
   let survey = new Model(jsonBody);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setFlag(true);
+    }, 1500);
+  }, []);
 
   survey?.survey?.onComplete.add((sender, options) => {
     let result = sender.data;
@@ -198,13 +197,9 @@ const Page = () => {
     }
   });
 
-  survey.fromJSON(jsonBody);
-
   survey?.onValueChanging.add((sender) => {});
 
-  //survey.onValueChanged.add((survey) => console.log(survey.data));
-
-  if (flag) return <Survey model={survey} />;
+  return flag ? <Survey model={survey} /> : <Loading />;
 };
 
 export default Page;
