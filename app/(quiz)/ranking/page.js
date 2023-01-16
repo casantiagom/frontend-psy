@@ -152,7 +152,7 @@ const Page = () => {
   useEffect(() => {
     setTimeout(() => {
       setFlag(true);
-    }, 1500);
+    }, 2200);
   }, []);
 
   survey?.survey?.onComplete.add((sender, options) => {
