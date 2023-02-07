@@ -117,6 +117,7 @@ const Page = () => {
           answer &&
           quizNumber &&
           getFilteredQuestions().map((q) => {
+            console.log(getFilteredQuestions());
             const likertOptions = {
               question: q.question,
               responses: [

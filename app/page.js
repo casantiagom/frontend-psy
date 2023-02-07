@@ -2,6 +2,7 @@ import React from "react";
 import image from "../public/index_back.png";
 
 import NavWrapper from "./components/NavWrapper";
+let sizeFont = 10;
 
 const Page = () => {
   return (
