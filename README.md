@@ -1,34 +1,41 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Mental Health Questionnaire Frontend
+This repository contains the frontend code for a mental health questionnaire site. The frontend is built using Next.js, and uses Tailwind CSS for styling. The site is connected to a backend built using Django and Python, which handles the storage and processing of questionnaire responses.
 
-## Getting Started
+# Getting Started
+To get started with the frontend, you'll need to follow these steps:
 
-First, run the development server:
+Clone the repository to your local machine using Git.
+Install the necessary dependencies using npm.
+Start the development server to run the frontend.
+Note that you'll also need to have the backend running in order for the site to function properly.
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+# Dependencies
+The following dependencies are required to run the frontend:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Node.js 12 or higher
+npm 6 or higher
+All of the required npm packages are included in the package.json file in the repository.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+# Firebase Setup
+To set up Firebase authentication for the frontend, you'll need to follow these steps:
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+Create a new Firebase project on the Firebase console.
+Set up a new authentication provider using the Google sign-in method.
+Copy the Firebase project credentials and add them to the .env.local file in the repository.
+Running the Frontend
+To run the frontend, follow these steps:
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+Open a terminal or command prompt and navigate to the project directory.
+Run the command npm install to install the required dependencies.
+Run the command npm run dev to start the development server.
+The frontend should now be running on http://localhost:3000/.
+Contributing
+If you'd like to contribute to the development of the frontend, please follow these guidelines:
 
-## Learn More
+Fork the repository and create a new branch for your changes.
+Make your changes to the codebase and test them locally.
+Submit a pull request to the main repository with a description of your changes.
+Wait for feedback from the maintainers before merging your changes.
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+# License
+This project is licensed under the MIT License. See the LICENSE file for more information.
